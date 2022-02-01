@@ -1,0 +1,36 @@
+<div class="login">
+    <div class="form">
+        <form  class="login-form" [formGroup]="myForm" (submit)="login()">
+            <span class="material-icons">lock</span>
+            <div class="input-group has-validation">
+                <input type="text" 
+                    placeholder="user"
+                    formControlName="user"
+                    class="form-control is-valid"/>
+
+                <small class="valid-feedback" *ngIf="validateField('user')">
+                    {{validateField("user")}}
+                </small>
+
+            </div>
+            <div class="input-group has-validation">
+                <input 
+                    type="password" 
+                    placeholder="password"
+                    formControlName="password"
+                    class="form-control is-valid"/>
+                    <small class="valid-feedback" *ngIf="validateField('password')">
+                        {{validateField("password")}}
+                    </small>
+            </div>
+            <button 
+                type="submit"
+                value="Login">
+                VA
+            </button>
+               
+            <p *ngIf="messageForm">{{messageForm}}</p>
+
+        </form>  
+    </div>
+</div>
