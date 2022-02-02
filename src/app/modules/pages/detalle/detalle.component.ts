@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { navBarItem } from 'src/app/core/interfaces/Header.interfaces';
 import { Productos } from 'src/app/core/interfaces/Productos.interfaces';
-import { ProductosService } from 'src/app/core/services/productos.service';
-import { RoutingSelectedService } from '../../../core/services/routing-selected.service';
+import { RoutingSelectedService } from 'src/app/core/services/routing-selected.service';
+import { ProductosService } from '../../../core/services/productos.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-detalle',
+  templateUrl: './detalle.component.html',
+  styleUrls: ['./detalle.component.css']
 })
-export class HomeComponent implements OnInit {
+export class DetalleComponent implements OnInit {
   enlaces : navBarItem[] = [];
   productList: Productos[] = [];
 
@@ -18,22 +18,22 @@ export class HomeComponent implements OnInit {
     private routes: RoutingSelectedService,
     private activatedRoute: ActivatedRoute,
     private productos: ProductosService,
-    private route: Router,
+    private route: ActivatedRoute
   ) { 
     this.enlaces = this.routes.getRoutes(this.activatedRoute.snapshot.url[0]?.path || '');
   }
 
   ngOnInit(): void {
-    this.productos.productos.subscribe(resp => 
-      this.productList = resp.productos
-    ) 
-    
+    let producto = '';
+    this.route.params.subscribe((params: any) => producto = params['id']);
+
+    this.productos.productos.subscribe(resp => {
+      this.productList = resp.productos.filter( m => m.id_producto === JSON.parse(producto))
+    }) 
   }
 
-  clickDetalle(e:number){
+  clickDetalle(e:any){
     console.log("detalle,");
-    this.route.navigate(['./detalle', e])
-
   }
   clickAddCar(e:number){
     console.log(" add Productos");
@@ -43,4 +43,5 @@ export class HomeComponent implements OnInit {
     console.log("RM Productos");
     this.productos.rmProductStorage(e, this.productList);
   }
+
 }

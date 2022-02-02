@@ -6,11 +6,9 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
-          
-            <li class="nav-item" *ngFor="let enlace of navegacion">
+            <li style="cursor: pointer;" class="nav-item" *ngFor="let enlace of navegacion">
                 <p class="nav-link active" [routerLink]="enlace.link" aria-current="page" >{{enlace.texto}}</p>
             </li>
-
         </ul>
       </div>
     </div>

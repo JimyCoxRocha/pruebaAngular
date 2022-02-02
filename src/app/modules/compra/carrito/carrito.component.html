@@ -1,1 +1,45 @@
-<p>carrito works!</p>
+<app-header
+    [enlaces]="enlaces"
+></app-header>
+<div class="container">
+
+    <div *ngIf="errorLogin" class="text-white bg-primary align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+                Por favor, debe estar logeado. Redirigir a Login...
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="compraRealizada" class="text-white bg-primary align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+                Productos comprados correctamente. Redirigir a pantalla de inicio...
+            </div>
+        </div>
+    </div>
+
+    <h1 class="text-center m-5">Carrito de los productos</h1>
+    <p><strong>Total: </strong>{{total.total | currency}}</p>
+    <button type="button" (click)="comprar()" [disabled]="!(total.total > 0)" class="btn btn-success mb-5">Comprar</button>
+    <p *ngIf="total.total == 0"><strong>No ha agregado artículos a su pedido</strong></p>
+    <div class="row justify-content-md-center">
+        <div class="col text-center mb-5"
+            *ngFor="let producto of productList">
+            <app-card
+                [idProducto] = "producto.id_producto"
+                [titulo] = "producto.nombre"
+                [desc] = "producto.descripcion"
+                [cantDisp] = "producto.stock"
+                [isInCart] = "producto.isSelected"
+                [precio]="producto.precio"
+                [image] = "producto.imagenes[0]"
+                (clickDetalle) = "clickDetalle($event)"
+                (clickAddCar) = "clickAddCar($event)"
+                (clickRemoveCar) = "clickRemoveCar($event)"
+            ></app-card>
+        </div>
+
+    </div>
+    
+</div>

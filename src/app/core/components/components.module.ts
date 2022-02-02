@@ -3,17 +3,19 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { RouterModule } from '@angular/router';
+import { CardComponent } from './card/card.component';
 
 
 
 @NgModule({
-  declarations: [ HeaderComponent, SideBarComponent ],
+  declarations: [ HeaderComponent, SideBarComponent, CardComponent ],
   imports: [
     CommonModule,
     RouterModule
   ],
   exports: [
-    HeaderComponent
+    HeaderComponent,
+    CardComponent
   ]
 })
 export class ComponentsModule { }

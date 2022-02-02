@@ -15,10 +15,6 @@ export class RoutingSelectedService {
         texto: 'Home'
       },
       {
-        link: '/detalle',
-        texto: 'detalle'
-      },
-      {
         link: '/auth',
         texto: 'Login'
       },
