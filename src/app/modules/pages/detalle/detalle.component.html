@@ -5,23 +5,33 @@
     
     <h1 class="text-center m-5">DETALLE DE PRODUCTO</h1>
     <div class="row justify-content-md-center">
-        <div class="col text-center mb-5"
-            *ngFor="let producto of productList">
-            <app-card
-                [idProducto] = "producto.id_producto"
-                [titulo] = "producto.nombre"
-                [desc] = "producto.descripcion"
-                [cantDisp] = "producto.stock"
-                [isInCart] = "producto.isSelected"
-                [desc]="producto.descripcion"
-                [precio]="producto.precio"
-                [image] = "producto.imagenes[0]"
-                tipoCard="detalle"
-                (clickDetalle) = "clickDetalle($event)"
-                (clickAddCar) = "clickAddCar($event)"
-                (clickRemoveCar) = "clickRemoveCar($event)"
-            ></app-card>
+        <div class="d-flex justify-content-start flex-column flex-md-row">
+            <div class="text-center mb-5"
+                *ngFor="let producto of productList">
+                <app-card
+                    [idProducto] = "producto.id_producto"
+                    [titulo] = "producto.nombre"
+                    [cantDisp] = "producto.stock"
+                    [isInCart] = "producto.isSelected"
+                    [precio]="producto.precio"
+                    [image] = "producto.imagenes[0]"
+                    tipoCard="detalle"
+                    (clickAddCar) = "clickAddCar($event)"
+                    (clickRemoveCar) = "clickRemoveCar($event)"
+                ></app-card>
+            </div>
+            <div class="m-5 d-flex flex-column">
+                <h3><strong>Descripcion</strong></h3>
+                <span>{{productList[0]?.descripcion || "Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam quibusdam sapiente iure, consequatur neque deleniti incidunt consectetur molestias doloribus excepturi ut recusandae alias modi, fugiat, ratione id aliquid voluptate amet."}}</span>
+                <button type="button" class="btn btn-success mt-2" routerLink="/">
+                    <span class="align-top">
+                        Inicio 
+                    </span>
+                    <span class="material-icons">home</span>
+                </button>
+                
+            </div>
         </div>
-
+        
     </div>
 </div>

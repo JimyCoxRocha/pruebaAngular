@@ -1,10 +1,11 @@
-<div class="card" style="width: 18rem;">
+
+<div class="card width-size">
     <img [src]="image" class="card-img-top" alt="...">
     <div class="card-body">
         <h5 class="card-title">{{titulo}}</h5>
         <p class="card-text"
         *ngIf="tipoCard !== typeCard.list">
-            {{desc || "Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam quibusdam sapiente iure, consequatur neque deleniti incidunt consectetur molestias doloribus excepturi ut recusandae alias modi, fugiat, ratione id aliquid voluptate amet." }}
+            {{desc || '' }}
         </p>
         <p class="card-text" >
             <strong>Stock: </strong>{{cantDisp}}
@@ -20,7 +21,10 @@
             </a>
     
             <div (click)="isInCart ? removeCar() : addCar() " [class]="isInCart ? 'btn btn-warning' : 'btn btn-primary'">
-                <span class="align-top">{{ isInCart ? "Remover" : "Agregar" }}</span><span class="material-icons">shopping_cart</span>
+                <span class="align-top">
+                    {{ isInCart ? "Remover" : "Agregar" }}
+                </span>
+                <span class="material-icons">shopping_cart</span>
             </div>
         </div>
     </div>

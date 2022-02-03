@@ -1,0 +1,9 @@
+
+.width-size {
+    width: unset;
+  }
+  @media (min-width: 768px) {
+    .width-size {
+      width: 18rem;
+    }
+  }
